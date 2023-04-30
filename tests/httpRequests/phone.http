@@ -1,0 +1,23 @@
+POST http://localhost:5000/api/phones
+Content-Type: application/json
+
+{
+  "brand": "Apple",
+  "model": "iPhone 4",
+  "display": "4",
+  "year": "2011",
+  "nfc": "true"
+}
+
+GET http://localhost:5000/api/phones?limit=10
+
+GET http://localhost:5000/api/phones/644eb2e19d2e178d14be9267
+
+PATCH http://localhost:5000/api/phones/644eb2e19d2e178d14be9267
+Content-Type: application/json
+
+{
+  "display": "6"
+}
+
+DELETE http://localhost:5000/api/phones/644eb2e19d2e178d14be9267
