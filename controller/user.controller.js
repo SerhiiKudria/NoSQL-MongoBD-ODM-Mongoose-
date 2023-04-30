@@ -17,6 +17,29 @@ module.exports.createUser = async (req, res, next) => {
   }
 };
 
+module.exports.createUserPhones = async (req, res, next) => {
+  const { userId } = req.params;
+  const { body } = req;
+
+  try {
+    const foundUser = await User.findById(userId);
+    if (!foundUser) {
+      return next(createHttpError(404, 'User Not Found'));
+    }
+
+    const createdPhones =  await foundUser.phones.push(body)
+    await foundUser.save()
+
+    if (!createdPhones) {
+      return next(createHttpError(400, 'Bad Request create phones'));
+    }
+
+    res.status(200).send({ data: foundUser.phones });
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports.getUsers = async (req, res, next) => {
   const { limit = 10 } = req.query;
 
@@ -44,6 +67,23 @@ module.exports.getUserById = async (req, res, next) => {
   }
 };
 
+module.exports.getUserPhones = async (req, res, next) => {
+  const { userId } = req.params;
+
+  try {
+    const foundUser = await User.findById(userId);
+    if (!foundUser) {
+      return next(createHttpError(404, 'User Not Found'));
+    }
+
+    const populatedUser = await foundUser.populate('phones')
+
+    res.status(200).send({ data: populatedUser.phones });
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports.updateUserById = async (req, res, next) => {
   const {
     params: { userId },
@@ -52,6 +92,7 @@ module.exports.updateUserById = async (req, res, next) => {
 
   try {
     // runValidators: true, - "вмикає" валідатори, описані в моделі
+
 
     const updatedUser = await User.findByIdAndUpdate(userId, body, {
       new: true,

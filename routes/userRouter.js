@@ -21,4 +21,10 @@ userRouter
   .post(userController.createUserPost)
   .get(userController.getUserPosts);
 
+  userRouter
+  .route('/:userId/phones')
+  .post(userController.createUserPhones)
+  .get(userController.getUserPhones);
+;
+
 module.exports = userRouter;

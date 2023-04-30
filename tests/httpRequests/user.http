@@ -11,9 +11,21 @@ Content-Type: application/json
   "workExperience": 0
 }
 
+POST http://localhost:5000/api/users/644eda19431903067ef6e8f1/phones
+Content-Type: application/json
+
+{
+   "_id": "644ed55fc25780d27a3073e0"
+}
+
+
+GET http://localhost:5000/api/users/644eda19431903067ef6e8f1/phones
+
+
 GET http://localhost:5000/api/users?limit=10
 
 GET http://localhost:5000/api/users/644e7208af67d3680fd3f58b
+
 
 PATCH http://localhost:5000/api/users/644e7208af67d3680fd3f58b
 Content-Type: application/json

@@ -3,9 +3,9 @@ Content-Type: application/json
 
 {
   "brand": "Apple",
-  "model": "iPhone 4",
-  "display": "4",
-  "year": "2011",
+  "model": "iPhone 6",
+  "display": "6",
+  "year": "2013",
   "nfc": "true"
 }
 

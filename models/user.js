@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const yup = require('yup');
+const Phone = require('./phone');
 
 const EMAIL_VALIDATION_SCHEMA = yup.string().email();
 
@@ -44,6 +45,7 @@ const userSchema = new mongoose.Schema(
       type: Number,
       min: 0,
     },
+    phones: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Phone' }]
   },
   {
     versionKey: false,
